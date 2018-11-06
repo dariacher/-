@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Рисование мышью</title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width = "1000" height="800"
+				style=""background-color:#fc0; 
+				border: 1px solid #ccc;  outline: 2px solid #000; margin:10px;"">	
+		</canvas>
+		<script>
+			var canvas = document.getElementById("myCanvas");
+			var context = canvas.getContext("2d");
+			var w = canvas.width;
+			var h = canvas.height;
+
+			var mouse = {x:0, y:0};
+			var draw = false;
+             
+           canvas.addEventListener("mousedown", function(e){
+                 
+                mouse.x = e.pageX - this.offsetLeft;
+                mouse.y = e.pageY - this.offsetTop;
+                draw = true;
+                context.beginPath();
+                context.moveTo(mouse.x, mouse.y);
+            });
+            canvas.addEventListener("mousemove", function(e){
+                 
+                if(draw==true){
+                 
+                    mouse.x = e.pageX - this.offsetLeft;
+                    mouse.y = e.pageY - this.offsetTop;
+                    context.lineTo(mouse.x, mouse.y);
+                    context.stroke();
+                }
+            });
+            canvas.addEventListener("mouseup", function(e){
+                 
+                mouse.x = e.pageX - this.offsetLeft;
+                mouse.y = e.pageY - this.offsetTop;
+                context.lineTo(mouse.x, mouse.y);
+                context.stroke();
+                context.closePath();
+                draw = false;
+            });
+            
+            
+		</script>
+	</body>
+</html>
