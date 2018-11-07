@@ -1,51 +1,33 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Рисование мышью</title>
-	</head>
-	<body>
-		<canvas id="myCanvas" width = "1000" height="800"
-				style=""background-color:#fc0; 
-				border: 1px solid #ccc;  outline: 2px solid #000; margin:10px;"">	
-		</canvas>
-		<script>
-			var canvas = document.getElementById("myCanvas");
-			var context = canvas.getContext("2d");
-			var w = canvas.width;
-			var h = canvas.height;
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Рисование мышью</title> 
+</head> 
+<body> 
+<canvas id="firststeps2" width="700" height="600" style="background:#ddd;"></canvas> 
+<script> 
 
-			var mouse = {x:0, y:0};
-			var draw = false;
-             
-           canvas.addEventListener("mousedown", function(e){
-                 
-                mouse.x = e.pageX - this.offsetLeft;
-                mouse.y = e.pageY - this.offsetTop;
-                draw = true;
-                context.beginPath();
-                context.moveTo(mouse.x, mouse.y);
-            });
-            canvas.addEventListener("mousemove", function(e){
-                 
-                if(draw==true){
-                 
-                    mouse.x = e.pageX - this.offsetLeft;
-                    mouse.y = e.pageY - this.offsetTop;
-                    context.lineTo(mouse.x, mouse.y);
-                    context.stroke();
-                }
-            });
-            canvas.addEventListener("mouseup", function(e){
-                 
-                mouse.x = e.pageX - this.offsetLeft;
-                mouse.y = e.pageY - this.offsetTop;
-                context.lineTo(mouse.x, mouse.y);
-                context.stroke();
-                context.closePath();
-                draw = false;
-            });
-            
-            
-		</script>
-	</body>
+window.onload = function() { 
+var canvasElem2 = document.getElementById('firststeps2'); 
+
+if (canvasElem2) { 
+
+var firstSteps2 = canvasElem2.getContext('2d'); 
+firstSteps2.fillStyle = 'red'; 
+firstSteps2.strokeStyle = 'red'; 
+canvasElem2.addEventListener('mousemove', function(e){ 
+var x, y; 
+x = e.pageX; 
+y = e.pageY; 
+setTimeout(function(){ 
+firstSteps2.lineTo(x - canvasElem2.offsetLeft, y - canvasElem2.offsetTop); 
+firstSteps2.moveTo(x - canvasElem2.offsetLeft, y - canvasElem2.offsetTop); 
+firstSteps2.stroke(); 
+},1) 
+}); 
+
+} 
+} 
+</script> 
+</body> 
 </html>
